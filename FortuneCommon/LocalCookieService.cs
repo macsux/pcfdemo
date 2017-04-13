@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace FortuneCommon
 {
@@ -11,9 +12,9 @@ namespace FortuneCommon
             "I have always wished for my computer to be as easy to use as my telephone; my wish has come true because I can no longer figure out how to use my telephone.",
             "I think Microsoft named .Net so it wouldn’t show up in a Unix directory listing."
         };
-        public string GetCookie()
+        public Task<string> GetCookie()
         {
-            return Cookies[(new Random()).Next(0, Cookies.Length - 1)];
+            return Task.FromResult(Cookies[(new Random()).Next(0, Cookies.Length - 1)]);
         }
     }
 }

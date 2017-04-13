@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,12 @@ namespace FortuneCommon
             configurationBuilder(env, builder);
 
             Configuration = builder.Build();
+
+            // setup period refresh of configuration
+            var myTimer = new System.Timers.Timer();
+            myTimer.Elapsed += (sender, args) => Configuration.Reload();
+            myTimer.Interval = 10000;
+            myTimer.Enabled = true;
         }
     }
 

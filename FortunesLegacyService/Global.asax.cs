@@ -6,14 +6,17 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Autofac.Integration.Wcf;
 using Autofac.Integration.Web;
 using FortuneCommon;
 using FortuneCookieDatabase;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Pivotal.Discovery.Client;
+using Steeltoe.CloudFoundry.Connector.MySql.EF6;
 using Steeltoe.Extensions.Configuration;
 
 
@@ -38,11 +41,21 @@ namespace FortunesLegacyService
                 .AddCloudFoundry()
                 .AddEnvironmentVariables());
 
+
+            var services = new ServiceCollection();
+            services.AddDiscoveryClient(ServerConfig.Configuration);
+            services.AddDbContext<FortuneCookieDbContext>(ServerConfig.Configuration);
+
             var builder = new ContainerBuilder();
-            builder.AddDbContext<FortuneCookieDbContext>(ServerConfig.Configuration);
-            builder.AddDiscoveryService();
+            builder.Populate(services);
+
+//            builder.AddDiscoveryService();
             builder.RegisterType<FortuneServiceWCF>();
             var container = builder.Build();
+
+            // ensure that discovery client component starts up
+            container.Resolve<IDiscoveryClient>();
+
             _containerProvider = new ContainerProvider(container);
             AutofacHostFactory.Container = container;
 

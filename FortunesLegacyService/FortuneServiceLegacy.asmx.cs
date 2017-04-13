@@ -21,7 +21,7 @@ namespace FortunesLegacyService
         [WebMethod]
         public string GetCookie()
         {
-            return new LocalCookieService().GetCookie();
+            return new LocalCookieService().GetCookie().Result;
         }
     }
 }

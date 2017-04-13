@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FortunesLegacyService.Default" %>
+﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FortunesLegacyService.Default"  %>
 
 <!DOCTYPE html>
 
