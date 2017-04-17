@@ -15,9 +15,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Pivotal.Discovery.Client;
+using Pivotal.Extensions.Configuration;
+using Pivotal.Extensions.Configuration.ConfigServer;
 using Steeltoe.CloudFoundry.Connector;
 using Steeltoe.CloudFoundry.Connector.Services;
-using Steeltoe.Extensions.Configuration;
+//using Steeltoe.Extensions.Configuration;
+//using Steeltoe.Extensions.Configuration;
 using DiscoveryApplicationBuilderExtensions = Steeltoe.Discovery.Client.DiscoveryApplicationBuilderExtensions;
 
 namespace FortunesFormsUI
@@ -36,12 +39,14 @@ namespace FortunesFormsUI
 
             
             ServerConfig.RegisterConfig("development", (env, configBuilder) =>
+            
                 configBuilder.SetBasePath(env.ContentRootPath)
                     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
                     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                    .AddCloudFoundry()
-//                    .AddConfigServer(env)
-                    .AddEnvironmentVariables());
+                    .AddConfigServer(env)
+                    .AddEnvironmentVariables())
+                ;
+            
 
 
             var services = new ServiceCollection();
@@ -75,9 +80,10 @@ namespace FortunesFormsUI
             var container = builder.Build();
             // ensure that discovery client component starts up
             container.Resolve<IDiscoveryClient>();
+            var z = container.Resolve<IOptionsSnapshot<FortunesConfiguration>>();
 //            var factory = container.Resolve<Func<ICookieService>>();
 //            var client = factory();
-            // needed for WinForms injection
+// needed for WinForms injection
             _containerProvider = new ContainerProvider(container);
             
         }

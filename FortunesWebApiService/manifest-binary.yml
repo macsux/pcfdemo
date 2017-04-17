@@ -1,0 +1,12 @@
+---
+applications:
+- name: FortunesService
+  random-route: true
+  memory: 512M
+  stack: windows2012R2
+  command: FortunesWebApiService.exe
+  health-check-type: http
+  buildpack: binary_buildpack
+  services:
+    - eureka
+    - mysql-fortunes

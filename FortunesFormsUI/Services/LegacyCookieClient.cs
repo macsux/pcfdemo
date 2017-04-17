@@ -19,7 +19,8 @@ namespace FortunesFormsUI
         public async Task<string> GetCookie()
         {
             var client = new FortuneServiceLegacy.FortuneServiceLegacy();
-            client.Url = _dicoveryAddressResolver.LookupService(client.Url).ToString();
+            var uri = "http://FortunesLegacyService" + new Uri(client.Url).AbsolutePath;
+            client.Url = _dicoveryAddressResolver.LookupService(uri).ToString();
             return client.GetCookie();
         }
     }

@@ -21,6 +21,7 @@ namespace FortuneCommon
             var env = new HostingEnvironment(environment);
             // Set up configuration sources.
             var builder = new ConfigurationBuilder();
+            builder.AddCloudFoundry();
             configurationBuilder(env, builder);
 
             Configuration = builder.Build();

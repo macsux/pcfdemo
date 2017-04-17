@@ -13,13 +13,16 @@ using FortuneCommon;
 using FortuneCookieDatabase;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Owin;
 using Owin;
 using Pivotal.Discovery.Client;
 using Steeltoe.CloudFoundry.Connector.MySql.EF6;
 using Steeltoe.Extensions.Configuration;
 
-namespace FortunesWebApiService
+[assembly: OwinStartup(typeof(FortunesServicesOwin.Startup))]
+namespace FortunesServicesOwin
 {
+    
     public class Startup
     {
 
@@ -55,7 +58,6 @@ namespace FortunesWebApiService
 
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             appBuilder.UseWebApi(config);
-            
 
             // ensure that discovery client is started
             container.Resolve<IDiscoveryClient>();

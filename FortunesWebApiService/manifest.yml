@@ -1,6 +1,6 @@
 ---
 applications:
-- name: FortunesLegacyUI
+- name: FortunesService
   random-route: true
   memory: 512M
   stack: windows2012R2
@@ -8,4 +8,4 @@ applications:
   buildpack: https://github.com/cloudfoundry-incubator/hwc-buildpack/releases/download/v2.3.3/hwc_buildpack-cached-v2.3.3.zip
   services:
     - eureka
-    - config-server
+    - mysql-fortunes

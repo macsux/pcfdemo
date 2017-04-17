@@ -32,6 +32,14 @@ namespace FortunesWebApiService
                     urls.Add(args[i + 1]);
                 }
             }
+            var port = Environment.GetEnvironmentVariable("PORT");
+
+            if (!urls.Any() && !string.IsNullOrWhiteSpace(port))
+            {
+                var url = $"http://localhost:{port}/";
+                Console.WriteLine(url);
+                urls.Add(url);
+            }
             return urls.ToArray();
         }
     }
