@@ -54,9 +54,24 @@ namespace CloudFoundry.Controllers
         }
         public IActionResult KillApp()
         {
-            Console.WriteLine("Kaboom.");
-            Environment.Exit(-1);
+            try
+            {
+                throw new KaboomException("Kaboom");
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e);
+                Environment.Exit(-1);
+            }
+            
             return View();
+        }
+    }
+
+    public class KaboomException : Exception
+    {
+        public KaboomException(string message) : base(message)
+        {
         }
     }
 }

@@ -1,0 +1,41 @@
+---
+applications:
+- name: FortunesLegacyUI
+  path: .\FortunesFormsUI\bin\Release\PublishOutput\
+  random-route: true
+  memory: 512M
+  stack: windows2012R2
+  health-check-type: http
+  buildpack: https://github.com/cloudfoundry-incubator/hwc-buildpack/releases/download/v2.3.3/hwc_buildpack-cached-v2.3.3.zip
+  services:
+    - eureka
+    - config-server
+- name: FortunesLegacyService
+  path: .\FortunesLegacyService\bin\Release\PublishOutput\
+  random-route: true
+  memory: 512M
+  stack: windows2012R2
+  health-check-type: http
+  buildpack: https://github.com/cloudfoundry-incubator/hwc-buildpack/releases/download/v2.3.3/hwc_buildpack-cached-v2.3.3.zip
+  services:
+   - eureka
+   - mysql-fortunes
+- name: FortunesService
+  path: .\FortunesServicesOwin\bin\Release\PublishOutput\
+  random-route: true
+  memory: 512M
+  stack: windows2012R2
+  health-check-type: http
+  health-check-http-endpoint: /api/fortunes/random
+  buildpack: https://github.com/cloudfoundry-incubator/hwc-buildpack/releases/download/v2.3.3/hwc_buildpack-cached-v2.3.3.zip
+  services:
+    - eureka
+    - mysql-fortunes
+- name: FortunesUI
+  path: .\FortunesUI\bin\Release\PublishOutput\
+  random-route: true
+  memory: 512M
+  health-check-type: http
+  buildpack: dotnet_core_buildpack
+  services:
+    - eureka

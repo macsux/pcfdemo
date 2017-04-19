@@ -14,6 +14,7 @@ using FortuneCookieDatabase;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Owin;
 using Pivotal.Discovery.Client;
 using Steeltoe.CloudFoundry.Connector.MySql.EF6;
@@ -39,6 +40,7 @@ namespace FortunesServicesOwin
             var services = new ServiceCollection();
             services.AddDbContext<FortuneCookieDbContext>(ServerConfig.Configuration);
             services.AddDiscoveryClient(ServerConfig.Configuration);
+            
             var builder = new ContainerBuilder();
             builder.Populate(services);
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
@@ -58,7 +60,7 @@ namespace FortunesServicesOwin
 
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             appBuilder.UseWebApi(config);
-
+            appBuilder.UseCors(CorsOptions.AllowAll);
             // ensure that discovery client is started
             container.Resolve<IDiscoveryClient>();
         }
