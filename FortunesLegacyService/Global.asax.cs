@@ -15,7 +15,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using MySql.Data.MySqlClient;
 using Pivotal.Discovery.Client;
+using Steeltoe.CloudFoundry.Connector.MySql;
 using Steeltoe.CloudFoundry.Connector.MySql.EF6;
 using Steeltoe.Extensions.Configuration;
 
@@ -31,6 +33,7 @@ namespace FortunesLegacyService
             get { return _containerProvider; }
         }
 
+        public static MySqlConnection DatabaseFactory => _containerProvider.RequestLifetime.Resolve<MySqlConnection>();
         void Application_Start(object sender, EventArgs e)
         {
 
@@ -45,6 +48,7 @@ namespace FortunesLegacyService
             var services = new ServiceCollection();
             services.AddDiscoveryClient(ServerConfig.Configuration);
             services.AddDbContext<FortuneCookieDbContext>(ServerConfig.Configuration);
+            services.AddMySqlConnection(ServerConfig.Configuration);
 
             var builder = new ContainerBuilder();
             builder.Populate(services);

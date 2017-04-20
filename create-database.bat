@@ -1,0 +1,1 @@
+cf create-service p-mysql 100mb-dev mysql-fortunes
