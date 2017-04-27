@@ -19,5 +19,11 @@ namespace FortunesServicesOwin
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        void Application_Error(object sender, EventArgs e)
+        {
+            Exception exc = Server.GetLastError();
+            Console.Error.WriteLine(exc);
+        }
     }
+
 }

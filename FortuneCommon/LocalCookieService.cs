@@ -115,9 +115,16 @@ namespace FortuneCommon
 
             "Computer language design is just like a stroll in the park. Jurassic Park, that is.",
         };
-        public Task<string> GetCookie()
+        public Task<string> GetCookieAsync()
         {
-            return Task.FromResult(Cookies[(new Random()).Next(0, Cookies.Length - 1)]);
+            return Task.FromResult(GetCookie());
         }
+
+        public string GetCookie()
+        {
+            return Cookies[(new Random()).Next(0, Cookies.Length - 1)];
+        }
+
+        
     }
 }

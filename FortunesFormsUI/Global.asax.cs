@@ -35,18 +35,17 @@ namespace FortunesFormsUI
         {
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            
+
             ServerConfig.RegisterConfig("development", (env, configBuilder) =>
-            
-                configBuilder.SetBasePath(env.ContentRootPath)
-                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                    .AddConfigServer(env)
-                    .AddEnvironmentVariables())
+
+                    configBuilder.SetBasePath(env.ContentRootPath)
+                        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                        .AddConfigServer(env)
+                        .AddEnvironmentVariables())
                 ;
-            
+
 
 
             var services = new ServiceCollection();
@@ -58,9 +57,8 @@ namespace FortunesFormsUI
             builder.Populate(services);
             // used for wcf integration
             builder.RegisterType<EndpointClientHandler>().AsImplementedInterfaces().SingleInstance();
-//            builder.AddDiscoveryService();
 
-            builder.RegisterType<LegacyCookieClient>().Named<ICookieService>("asmx");
+            builder.RegisterType<AsmxCookieClient>().Named<ICookieService>("asmx");
             builder.RegisterType<WcfCookieClient>().Named<ICookieService>("wcf");
             builder.RegisterType<LocalCookieService>().Named<ICookieService>("local");
             builder.RegisterType<RestCookieClient>().Named<ICookieService>("rest");
@@ -80,12 +78,14 @@ namespace FortunesFormsUI
             var container = builder.Build();
             // ensure that discovery client component starts up
             container.Resolve<IDiscoveryClient>();
-            var z = container.Resolve<IOptionsSnapshot<FortunesConfiguration>>();
-//            var factory = container.Resolve<Func<ICookieService>>();
-//            var client = factory();
-// needed for WinForms injection
             _containerProvider = new ContainerProvider(container);
-            
+            Console.WriteLine(">> FortuneLegacyUI Started<<");
+        }
+
+        void Application_Error(object sender, EventArgs e)
+        {
+            Exception exc = Server.GetLastError();
+            Console.Error.WriteLine(exc);
         }
     }
 
@@ -94,11 +94,4 @@ namespace FortunesFormsUI
         public string ClientType { get; set; }
     }
 
-//    public enum CookieServiceType
-//    {
-//        Local,
-//        Asmx,
-//        Wcf,
-//        Rest
-//    }
 }

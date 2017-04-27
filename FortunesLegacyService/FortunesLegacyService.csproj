@@ -205,6 +205,7 @@
     <Content Include="Default.aspx" />
     <Content Include="packages.config" />
     <Content Include="appsettings.json" />
+    <Content Include="manifest-services.yml" />
     <Content Include="manifest.yml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">

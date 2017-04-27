@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Routing;
@@ -33,7 +34,7 @@ namespace FortunesLegacyService
             get { return _containerProvider; }
         }
 
-        public static MySqlConnection DatabaseFactory => _containerProvider.RequestLifetime.Resolve<MySqlConnection>();
+        public static MySqlConnection DatabaseFactory() => _containerProvider.RequestLifetime.Resolve<MySqlConnection>();
         void Application_Start(object sender, EventArgs e)
         {
 
@@ -59,10 +60,17 @@ namespace FortunesLegacyService
 
             // ensure that discovery client component starts up
             container.Resolve<IDiscoveryClient>();
-
+            // force db opeartion so db gets created on startup
+            container.Resolve<FortuneCookieDbContext>().FortuneCookies.Load();
             _containerProvider = new ContainerProvider(container);
             AutofacHostFactory.Container = container;
 
+        }
+
+        void Application_Error(object sender, EventArgs e)
+        {
+            Exception exc = Server.GetLastError();
+            Console.Error.WriteLine(exc);
         }
     }
 }

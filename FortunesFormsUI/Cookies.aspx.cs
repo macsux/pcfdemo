@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -17,19 +18,28 @@ namespace FortunesFormsUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //            _cookieService = new LocalCookieService();
-            //            _cookieService = new LegacyCookieClient(Global.DiscoveryAddressResolver);
-            //            _cookieService = new WcfCookieClient(DiscoveryAddressResolver);
+            this.lblCookieProvider.Text = CookieService.GetType().ToString();
         }
 
         protected async void btnGetCookie_OnClick(object sender, EventArgs e)
         {
-            this.lblCookie.Text = await CookieService.GetCookie();
-            this.lblCookieProvider.Text = CookieService.GetType().ToString();
-            pnlCookieResult.Visible = true;
+            this.lblCookie.Text = await CookieService.GetCookieAsync();
 
 
         }
 
+        protected void btnKill_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                throw new DivideByZeroException();
+            }
+            catch (Exception exception)
+            {
+                Console.Error.WriteLine(exception);
+                Environment.Exit(-1);
+                
+            }
+        }
     }
 }

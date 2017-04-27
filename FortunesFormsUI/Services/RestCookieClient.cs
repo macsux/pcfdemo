@@ -22,7 +22,7 @@ namespace FortunesFormsUI
             _handler = new DiscoveryHttpClientHandler(client);
         }
 
-        public async Task<string> GetCookie()
+        public async Task<string> GetCookieAsync()
         {
             var client = GetClient();
             
@@ -36,6 +36,11 @@ namespace FortunesFormsUI
             var client = new System.Net.Http.HttpClient(_handler, false);
             
             return client;
+        }
+
+        public string GetCookie()
+        {
+            throw new NotImplementedException();
         }
     }
 }

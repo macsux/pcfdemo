@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Pivotal.Master.cs" Inherits="FortunesFormsUI.PivotalMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pivotal CF Workshop | Welcome</title>
+    <link rel="stylesheet" href="css/foundation.css"/>
+    <script src="js/modernizr.js"></script>
+</head>
+<body>
+
+
+<nav class="top-bar">
+    <ul class="title-area">
+        <li class="name">
+            <h1>
+                <a href="./">Pivotal CF</a>
+            </h1>
+        </li>
+    </ul>
+</nav>
+<div class="row">
+    <div class="large-12 columns">
+        <h3><asp:ContentPlaceHolder runat="server" ID="Title">Welcome to Pivotal CF</asp:ContentPlaceHolder></h3>
+        <hr/>
+    </div>
+
+
+    <div class="container body-content">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+
+
+</div>
+</body>
+</html>

@@ -13,15 +13,6 @@ namespace FortunesFormsUI {
     public partial class Cookies {
         
         /// <summary>
-        /// pnlCookieResult control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCookieResult;
-        
-        /// <summary>
         /// lblCookie control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace FortunesFormsUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCookie;
+        
+        /// <summary>
+        /// lblCookieProvider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCookieProvider;
         
         /// <summary>
         /// btnGetCookie control.
@@ -40,12 +40,12 @@ namespace FortunesFormsUI {
         protected global::System.Web.UI.WebControls.Button btnGetCookie;
         
         /// <summary>
-        /// lblCookieProvider control.
+        /// btnKill control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCookieProvider;
+        protected global::System.Web.UI.WebControls.Button btnKill;
     }
 }

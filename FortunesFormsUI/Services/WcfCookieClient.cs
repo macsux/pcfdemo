@@ -17,11 +17,15 @@ namespace FortunesFormsUI
             _dicoveryAddressResolver = dicoveryAddressResolver;
         }
 
-        public async Task<string> GetCookie()
+        public async Task<string> GetCookieAsync()
         {
-
             var channelFactory = new ChannelFactory<ICookieService>("FortuneServiceWcf", _dicoveryAddressResolver.GetEndpointAddress("FortuneServiceWcf"));
-            return await channelFactory.CreateChannel().GetCookie();
+            return await channelFactory.CreateChannel().GetCookieAsync();
+        }
+
+        public string GetCookie()
+        {
+            throw new NotImplementedException();
         }
     }
 }

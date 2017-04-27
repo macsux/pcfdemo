@@ -19,7 +19,7 @@ namespace FortunesUI.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.ServiceUrl = _resolver.LookupService("http://FortunesService/").ToString();
+            ViewBag.ServiceUrl = _resolver.LookupService("https://FortunesService/").ToString();
             return View();
         }
 

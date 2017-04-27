@@ -1,4 +1,5 @@
 using System.Data.Entity.Migrations;
+using System.Linq;
 using FortuneCommon;
 
 namespace FortuneCookieDatabase
@@ -11,9 +12,12 @@ namespace FortuneCookieDatabase
         }
         protected override void Seed(FortuneCookieDbContext context)
         {
-            foreach (var cookie in LocalCookieService.Cookies)
+            if (!context.FortuneCookies.Any())
             {
-                context.FortuneCookies.AddOrUpdate(x => x.Cookie, new FortuneCookie() {Cookie = cookie, Language = "en"});
+                foreach (var cookie in LocalCookieService.Cookies)
+                {
+                    context.FortuneCookies.AddOrUpdate(x => x.Cookie, new FortuneCookie() {Cookie = cookie, Language = "en"});
+                }
             }
         }
     }

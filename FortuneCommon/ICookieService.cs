@@ -10,7 +10,11 @@ namespace FortuneCommon
     public interface ICookieService
     {
         [OperationContract]
-        Task<string> GetCookie();
+        string GetCookie();
+        [OperationContract]
+        Task<string> GetCookieAsync();
+
+
 
     }
 }

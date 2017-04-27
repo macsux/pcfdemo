@@ -29,40 +29,50 @@ namespace FortunesServicesOwin
 
         public void Configuration(IAppBuilder appBuilder)
         {
-            ServerConfig.RegisterConfig("development", (env, configBuilder) =>
-                configBuilder.SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddCloudFoundry()
-                .AddEnvironmentVariables());
+            try
+            {
 
-            // register DI
-            var services = new ServiceCollection();
-            services.AddDbContext<FortuneCookieDbContext>(ServerConfig.Configuration);
-            services.AddDiscoveryClient(ServerConfig.Configuration);
-            
-            var builder = new ContainerBuilder();
-            builder.Populate(services);
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            var container = builder.Build();
-            
-            // assign autofac to provide dependency injection on controllers
-            appBuilder.UseAutofacMiddleware(container);
+                ServerConfig.RegisterConfig("development", (env, configBuilder) =>
+                    configBuilder.SetBasePath(env.ContentRootPath)
+                        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                        .AddCloudFoundry()
+                        .AddEnvironmentVariables());
 
-            // Configure Web API for self-host. 
-            HttpConfiguration config = new HttpConfiguration();
-            // default to json
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}"
-            );
+                // register DI
+                var services = new ServiceCollection();
+                services.AddDbContext<FortuneCookieDbContext>(ServerConfig.Configuration);
+                services.AddDiscoveryClient(ServerConfig.Configuration);
 
-            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-            appBuilder.UseWebApi(config);
-            appBuilder.UseCors(CorsOptions.AllowAll);
-            // ensure that discovery client is started
-            container.Resolve<IDiscoveryClient>();
+                var builder = new ContainerBuilder();
+                builder.Populate(services);
+                builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+                var container = builder.Build();
+
+                // assign autofac to provide dependency injection on controllers
+                appBuilder.UseAutofacMiddleware(container);
+
+                // Configure Web API for self-host. 
+                HttpConfiguration config = new HttpConfiguration();
+                // default to json
+                config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+                config.Routes.MapHttpRoute(
+                    name: "DefaultApi",
+                    routeTemplate: "api/{controller}/{action}"
+                );
+
+                config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+                appBuilder.UseWebApi(config);
+                appBuilder.UseCors(CorsOptions.AllowAll);
+                // ensure that discovery client is started
+                container.Resolve<IDiscoveryClient>();
+
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e);
+                throw;
+            }
         }
     }
 }
