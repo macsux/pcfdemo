@@ -11,7 +11,7 @@ namespace FortuneCommon
     {
         [OperationContract]
         string GetCookie();
-        [OperationContract]
+        [OperationContract(Name = "GetCookie2")]
         Task<string> GetCookieAsync();
 
 
