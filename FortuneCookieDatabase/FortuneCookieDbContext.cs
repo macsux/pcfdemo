@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FortuneCookieDatabase.Migrations;
 using MySql.Data.Entity;
 
 namespace FortuneCookieDatabase
@@ -12,7 +13,10 @@ namespace FortuneCookieDatabase
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class FortuneCookieDbContext : DbContext
     {
-
+        public FortuneCookieDbContext() : base("name=Fortunes")
+        {
+            
+        }
         public FortuneCookieDbContext(string nameOrConnectionString) : base(nameOrConnectionString)
         {
 
