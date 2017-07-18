@@ -141,6 +141,9 @@
     <Reference Include="Pivotal.Discovery.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Pivotal.Discovery.Client.1.0.0\lib\net451\Pivotal.Discovery.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Pivotal.Extensions.Configuration.ConfigServer, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pivotal.Extensions.Configuration.ConfigServer.1.0.1\lib\net452\Pivotal.Extensions.Configuration.ConfigServer.dll</HintPath>
+    </Reference>
     <Reference Include="Steeltoe.CloudFoundry.Connector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Steeltoe.CloudFoundry.Connector.1.0.0\lib\net451\Steeltoe.CloudFoundry.Connector.dll</HintPath>
     </Reference>
@@ -153,11 +156,11 @@
     <Reference Include="Steeltoe.Discovery.Eureka.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Steeltoe.Discovery.Eureka.Client.1.0.0\lib\net451\Steeltoe.Discovery.Eureka.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Steeltoe.Extensions.Configuration.CloudFoundry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Steeltoe.Extensions.Configuration.CloudFoundry.1.0.0\lib\net451\Steeltoe.Extensions.Configuration.CloudFoundry.dll</HintPath>
+    <Reference Include="Steeltoe.Extensions.Configuration.CloudFoundry, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Steeltoe.Extensions.Configuration.CloudFoundry.1.0.1\lib\net452\Steeltoe.Extensions.Configuration.CloudFoundry.dll</HintPath>
     </Reference>
-    <Reference Include="Steeltoe.Extensions.Configuration.ConfigServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Steeltoe.Extensions.Configuration.ConfigServer.1.0.0\lib\net451\Steeltoe.Extensions.Configuration.ConfigServer.dll</HintPath>
+    <Reference Include="Steeltoe.Extensions.Configuration.ConfigServer, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Steeltoe.Extensions.Configuration.ConfigServer.1.0.1\lib\net452\Steeltoe.Extensions.Configuration.ConfigServer.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
