@@ -1,0 +1,9 @@
+---
+applications:
+- name: FortunesUI
+  random-route: true
+  memory: 512M
+  health-check-type: http
+  buildpack: dotnet_core_buildpack
+  services:
+    - eureka

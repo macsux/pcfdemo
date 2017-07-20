@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section Scripts {
+    <script>
+        var serviceUrl = "@ViewBag.ServiceUrl";
+        $("#btnFortune").click(function () {
+            $.ajax(serviceUrl + "api/fortunes/random")
+                .success(function(result) {
+                    $("#fortune").html(result);
+                });
+        });
+
+    </script> 
+}
+
+<br/>
+<table style="width: 50%;">
+    <tr style="border: 3px double blue; height: 300px; ">
+        <td id="fortune" colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2"><button id="btnFortune">Show me fortune</button></td>
+    </tr>
+</table>

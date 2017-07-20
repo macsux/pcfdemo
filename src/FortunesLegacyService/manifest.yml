@@ -1,0 +1,10 @@
+---
+applications:
+- name: FortunesLegacyService
+  random-route: true
+  memory: 512M
+  stack: windows2012R2
+  health-check-type: http
+  buildpack: https://github.com/cloudfoundry-incubator/hwc-buildpack/releases/download/v2.3.3/hwc_buildpack-cached-v2.3.3.zip
+  services:
+   - mysql-fortunes

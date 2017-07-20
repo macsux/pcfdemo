@@ -1,0 +1,12 @@
+---
+applications:
+- name: FortunesService
+  random-route: true
+  memory: 512M
+  stack: windows2012R2
+  health-check-type: http
+  health-check-http-endpoint: /api/fortunes/random
+  buildpack: https://github.com/cloudfoundry-incubator/hwc-buildpack/releases/download/v2.3.3/hwc_buildpack-cached-v2.3.3.zip
+  services:
+    - eureka 
+    - mysql-fortunes 
