@@ -34,7 +34,12 @@ namespace FortunesFormsUI
         private System.Net.Http.HttpClient GetClient()
         {
             var client = new System.Net.Http.HttpClient(_handler, false);
-            
+            // distributed tracing headers
+            var traceId = HttpContext.Current.Request.Headers["X-B3-TraceId"];
+            if (traceId != null)
+            {
+                client.DefaultRequestHeaders.Add("X-B3-SpanId", "FortunesFormUI");
+            }
             return client;
         }
 

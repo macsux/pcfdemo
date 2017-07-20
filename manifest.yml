@@ -1,7 +1,7 @@
 ---
 applications:
 - name: FortunesLegacyUI
-  path: .\FortunesFormsUI\bin\Release\PublishOutput\
+  path: .\_publish\FortunesFormsUI\
   random-route: true
   memory: 512M
   stack: windows2012R2
@@ -11,7 +11,7 @@ applications:
     - eureka
     - config-server
 - name: FortunesLegacyService
-  path: .\FortunesLegacyService\bin\Release\PublishOutput\
+  path: .\_publish\FortunesLegacyService\
   random-route: true
   memory: 512M
   stack: windows2012R2
@@ -21,7 +21,7 @@ applications:
    - eureka
    - mysql-fortunes
 - name: FortunesService
-  path: .\FortunesServicesOwin\bin\Release\PublishOutput\
+  path: .\_publish\FortunesServices\
   random-route: true
   memory: 512M
   stack: windows2012R2
@@ -32,7 +32,7 @@ applications:
     - eureka
     - mysql-fortunes
 - name: FortunesUI
-  path: .\FortunesUI\bin\Release\PublishOutput\
+  path: .\_publish\FortunesUI\
   random-route: true
   memory: 512M
   health-check-type: http
