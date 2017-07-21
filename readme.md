@@ -39,7 +39,7 @@ Do `cf push` inside `\publish\` folder
 2. Create a project that will act as pipeline. Use `Git` as Version control
 ### Building
 1. At the top of the menu, go to `Build & Release` and click `Import` button
-2. Use `\release\vsts\build_definition.json` as source
+2. Use `\deploy\vsts\build_definition.json` as source
 3. In the proces steps (left side), click **Process** and for setting **Default Agent queue** select `Hosted VS2017` 
 4. Click on **Get sources** link, pick **Remote Repo**, and click `Add connection`. For Server URL, set git URL where the repo is (https://github.com/macsux/pcfdemo.git or your forked version). Leave the rest of the settings as is.
 5. Click **Triggers** on the menu. Disable CI or set polling timer to something reasonable.
@@ -54,7 +54,7 @@ Before starting, visit the following links and install the required tasks into y
 1.1. Click **New definition**, and choose **Empty**
 1.2. Choose the build definition from previous step to be used as the source for this release and click **Create**
 1.3. Click save. Don't make any changes.
-2. On the top left, click the + dropdown, and select `Import release definition`. *NOTE: The rest of the instructions assumes you're using the new pipeline builder interface VSTS interface. As of writing it was an optional rollout*
+2. On the top left, click the + dropdown, and select `Import release definition`. Select `\deploy\vsts\release_definition.json` *NOTE: The rest of the instructions assumes you're using the new pipeline builder interface VSTS interface. As of writing it was an optional rollout*
 3. Under artifacts, click Add. Select your project and build defition from **Building** step to configure the source of your artifacts.
 3. Under `Run on agent`, for `Queue` select `Hosted VS2017`
 4. Click on `Deploy Legacy UI` task, under Cloud Foundry Enpoint click configuration button. On next screen, create a new Service Enpoint of type `Generic`. Use full api endpoint as server URL, and your username & password.
