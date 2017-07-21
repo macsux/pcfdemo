@@ -21,8 +21,6 @@ namespace FortuneCommon
 
             "Computer games don't affect kids; I mean if Pac-Man affected us as kids, we'd all be running around in darkened rooms, munching magic pills and listening to repetitive electronic music.",
 
-            "COBOL programmers understand why women hate periods.",
-
             "Artificial Intelligence usually beats natural stupidity.",
 
             "To err is human... to really foul up requires the root password.",
@@ -35,8 +33,6 @@ namespace FortuneCommon
 
             "Programmers are tools for converting caffeine into code.",
 
-            "Why do we want intelligent terminals when there are so many stupid users?",
-
             "I can't uninstall it, there seems to be some kind of 'Uninstall Shield'.",
 
             "See daddy ? All the keys are in alphabetical order now.",
@@ -44,8 +40,6 @@ namespace FortuneCommon
             "Hey! It compiles! Ship it!",
 
             "SUPERCOMPUTER: what it sounded like before you bought it.",
-
-            "Yo moma is like HTML: Tiny head, huge body.",
 
             "Windows Vista: It's like upgrading from Bill Clinton to George W. Bush.",
 
@@ -69,8 +63,6 @@ namespace FortuneCommon
 
             "If brute force doesn't solve your problems, then you aren't using enough.",
 
-            "Programming is like sex, one mistake and you have to support it for the rest of your life.",
-
             "Unix is user-friendly. It's just very selective about who its friends are.",
 
             "Microsoft: 'You've got questions. We've got dancing paperclips.'",
@@ -83,19 +75,11 @@ namespace FortuneCommon
 
             "Better to be a geek than an idiot.",
 
-            "I went to a gentleman's cybercafe — and they offered me a 'laptop dance'.",
-
             "After Perl everything else is just assembly language.",
-
-            "The Internet: where men are men, women are men, and children are FBI agents.",
 
             "There are 10 types of people in the world: those who understand binary, and those who don't.",
 
             "Difference between a virus and windows ? Viruses rarely fail.",
-
-            "Hacking is like sex. You get in, you get out, and hope that you didn't leave something that can be traced back to you.",
-
-            "1f u c4n r34d th1s u r34lly n33d t0 g37 l41d",
 
             @"Helpdesk: There is an icon on your computer labeled 'My Computer'. Double click on it., User: What's your computer doing on mine?",
 
