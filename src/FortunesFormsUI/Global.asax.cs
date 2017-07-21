@@ -62,7 +62,7 @@ namespace FortunesFormsUI
             builder.RegisterType<WcfCookieClient>().Named<ICookieService>("wcf");
             builder.RegisterType<LocalCookieService>().Named<ICookieService>("local");
             builder.RegisterType<RestCookieClient>().Named<ICookieService>("rest");
-
+            // register cookie service factory
             builder.Register(c =>
             {
                 var localContext = c.Resolve<IComponentContext>();
@@ -70,6 +70,7 @@ namespace FortunesFormsUI
                 Func<ICookieService> clientFactory = () => localContext.ResolveNamed<ICookieService>(config.Value.ClientType);
                 return clientFactory;
             });
+            // register cookie service (to be resolved out of factory above)
             builder.Register(c =>
             {
                 var localContext = c;

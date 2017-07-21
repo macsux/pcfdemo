@@ -32,9 +32,11 @@ Run `\build\build.ps1`. The output will be dropped into `\publish\`
 
 * *Ensure that you have CF CLI as part of path, logged in, and targeting space/org where you want to deploy*
 
-Do `cf push` inside `\publish\` folder
+1. Run build\create-services.bat. Wait for services to finish being created (`cf services`)
+2. Do `cf push` inside `\publish\` folder
 
 ## CI/CD with Visual Studio Team Services
+Services must be precreated in target space. Run build\create-services.bat. Wait for services to finish being created (`cf services`)
 1. Setup an VSTS space for your projects: https://www.visualstudio.com/team-services/
 2. Create a project that will act as pipeline. Use `Git` as Version control
 ### Building
@@ -65,3 +67,8 @@ Before starting, visit the following links and install the required tasks into y
    * Deploy .NET Core UI
 6. Go to Variables tab, and adjust the org / space to match the intended target
 7. Save and Release
+
+
+# Resources
+**Slides:** https://goo.gl/RfFZQd
+**Config Repo:** https://github.com/macsux/fortunesconfig

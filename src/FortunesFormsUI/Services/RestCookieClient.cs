@@ -38,7 +38,9 @@ namespace FortunesFormsUI
             var traceId = HttpContext.Current.Request.Headers["X-B3-TraceId"];
             if (traceId != null)
             {
-                client.DefaultRequestHeaders.Add("X-B3-SpanId", "FortunesFormUI");
+                client.DefaultRequestHeaders.Add("X-B3-TraceId", traceId);
+                client.DefaultRequestHeaders.Add("X-B3-ParentSpanId", HttpContext.Current.Request.Headers["X-B3-SpanId"]);
+                client.DefaultRequestHeaders.Add("X-B3-SpanId", Guid.NewGuid().ToString());
             }
             return client;
         }
