@@ -68,6 +68,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HdrHistogram, Version=2.24.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HdrHistogram.2.24.0-xeywwyqu-PR58\lib\net45\HdrHistogram.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
     </Reference>
@@ -180,8 +183,17 @@
     <Reference Include="Pivotal.Discovery.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Pivotal.Discovery.Client.1.0.0\lib\net451\Pivotal.Discovery.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Steeltoe.CloudFoundry.Connector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Steeltoe.CloudFoundry.Connector.1.0.0\lib\net451\Steeltoe.CloudFoundry.Connector.dll</HintPath>
+    <Reference Include="Steeltoe.CircuitBreaker.Hystrix, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Steeltoe.CircuitBreaker.Hystrix.1.1.0-rc2\lib\net46\Steeltoe.CircuitBreaker.Hystrix.dll</HintPath>
+    </Reference>
+    <Reference Include="Steeltoe.CircuitBreaker.Hystrix.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Steeltoe.CircuitBreaker.Hystrix.Core.1.1.0-rc2\lib\net46\Steeltoe.CircuitBreaker.Hystrix.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Steeltoe.CloudFoundry.Connector, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Steeltoe.CloudFoundry.Connector.1.1.0-rc2\lib\net452\Steeltoe.CloudFoundry.Connector.dll</HintPath>
+    </Reference>
+    <Reference Include="Steeltoe.CloudFoundry.Connector.Hystrix, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Steeltoe.CloudFoundry.Connector.Hystrix.1.1.0-rc2\lib\net452\Steeltoe.CloudFoundry.Connector.Hystrix.dll</HintPath>
     </Reference>
     <Reference Include="Steeltoe.CloudFoundry.Connector.MySql, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Steeltoe.CloudFoundry.Connector.MySql.1.0.0\lib\net451\Steeltoe.CloudFoundry.Connector.MySql.dll</HintPath>
@@ -192,8 +204,8 @@
     <Reference Include="Steeltoe.Discovery.Eureka.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Steeltoe.Discovery.Eureka.Client.1.0.0\lib\net451\Steeltoe.Discovery.Eureka.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Steeltoe.Extensions.Configuration.CloudFoundry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Steeltoe.Extensions.Configuration.CloudFoundry.1.0.0\lib\net451\Steeltoe.Extensions.Configuration.CloudFoundry.dll</HintPath>
+    <Reference Include="Steeltoe.Extensions.Configuration.CloudFoundry, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Steeltoe.Extensions.Configuration.CloudFoundry.1.1.0-rc2\lib\net452\Steeltoe.Extensions.Configuration.CloudFoundry.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -250,6 +262,24 @@
       <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Reactive, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.4.0.0-preview00001\lib\net46\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Core.3.1.1\lib\net46\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Linq.3.1.1\lib\net46\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Observable.Aliases, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Observable.Aliases.3.1.1\lib\net46\System.Reactive.Observable.Aliases.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Providers, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Providers.3.1.1\lib\net46\System.Reactive.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
     </Reference>
@@ -374,6 +404,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\FortunesController.cs" />
+    <Compile Include="Commands\GetFortuneCookiesCommand.cs" />
+    <Compile Include="Collapsers\TestRequestCollapser.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -400,7 +432,9 @@
     <Content Include="manifest.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />

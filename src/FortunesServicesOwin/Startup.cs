@@ -11,14 +11,19 @@ using Autofac.Extensions.DependencyInjection;
 using Autofac.Integration.WebApi;
 using FortuneCommon;
 using FortuneCookieDatabase;
+using FortunesServicesOwin.Collapsers;
+using FortunesServicesOwin.Commands;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Owin;
 using Pivotal.Discovery.Client;
+using Steeltoe.CircuitBreaker.Hystrix;
+using Steeltoe.CircuitBreaker.Hystrix.Strategy.Concurrency;
 using Steeltoe.CloudFoundry.Connector.MySql.EF6;
 using Steeltoe.Extensions.Configuration;
+using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, object>, System.Threading.Tasks.Task>;
 
 [assembly: OwinStartup(typeof(FortunesServicesOwin.Startup))]
 namespace FortunesServicesOwin
@@ -47,8 +52,10 @@ namespace FortunesServicesOwin
                 var builder = new ContainerBuilder();
                 builder.Populate(services);
                 builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+                builder.RegisterType<TestRequestCollapser>().AsSelf();
+                builder.RegisterType<GetFortuneCookiesCommand>().AsSelf();
                 var container = builder.Build();
-
+                
                 // assign autofac to provide dependency injection on controllers
                 appBuilder.UseAutofacMiddleware(container);
 
@@ -62,10 +69,18 @@ namespace FortunesServicesOwin
                 );
 
                 config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+                appBuilder.Use(new Func<AppFunc, AppFunc>(next => (async env =>
+                {
+                    var hystrix = HystrixRequestContext.InitializeContext();
+                    await next(env);
+                    hystrix.Dispose();
+                })));
                 appBuilder.UseWebApi(config);
                 appBuilder.UseCors(CorsOptions.AllowAll);
+                appBuilder.Use<HystrixRequestContextMiddlewareOwin>();
                 // ensure that discovery client is started
                 container.Resolve<IDiscoveryClient>();
+
 
             }
             catch (Exception e)
@@ -73,6 +88,23 @@ namespace FortunesServicesOwin
                 Console.Error.WriteLine(e);
                 throw;
             }
+        }
+    }
+
+    public class HystrixRequestContextMiddlewareOwin
+    {
+        private readonly Func<IDictionary<string, object>, Task> _next;
+
+        public HystrixRequestContextMiddlewareOwin(Func<IDictionary<string, object>, Task> next)
+        {
+            _next = next;
+        }
+
+        public async Task Invoke(IDictionary<string, object> environment)
+        {
+            var hystrix = HystrixRequestContext.InitializeContext();
+            await _next(environment);
+            hystrix.Dispose();
         }
     }
 }
