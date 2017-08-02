@@ -29,3 +29,5 @@ msbuild /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMet
 Remove-Item ..\src\FortunesUI\tmp -recurse
 
 Copy-Item manifest.yml ..\publish\manifest.yml
+Copy-Item create-services.bat ..\publish\create-services.bat
+Copy-Item gitconfig.json ..\publish\gitconfig.json
