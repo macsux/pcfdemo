@@ -30,4 +30,5 @@ Remove-Item ..\src\FortunesUI\tmp -recurse
 
 Copy-Item manifest.yml ..\publish\manifest.yml
 Copy-Item create-services.bat ..\publish\create-services.bat
+Copy-Item create-services.sh ..\publish\create-services.sh
 Copy-Item gitconfig.json ..\publish\gitconfig.json
