@@ -53,9 +53,9 @@ Before starting, visit the following links and install the required tasks into y
 * https://marketplace.visualstudio.com/items?itemName=automagically.DownloadFile
 * https://marketplace.visualstudio.com/items?itemName=YodLabs.UnzipTask
 1. At the top of the menu, go to `Build & Release` and click `Releases` button. If this is your first time doing it, do the next  steps to see full UI:
-1.1. Click **New definition**, and choose **Empty**
-1.2. Choose the build definition from previous step to be used as the source for this release and click **Create**
-1.3. Click save. Don't make any changes.
+    1. Click **New definition**, and choose **Empty**
+    2. Choose the build definition from previous step to be used as the source for this release and click **Create**
+    3. Click save. Don't make any changes.
 2. On the top left, click the + dropdown, and select `Import release definition`. Select `\deploy\vsts\release_definition.json` *NOTE: The rest of the instructions assumes you're using the new pipeline builder interface VSTS interface. As of writing it was an optional rollout*
 3. Under artifacts, click Add. Select your project and build defition from **Building** step to configure the source of your artifacts.
 3. Under `Run on agent`, for `Queue` select `Hosted VS2017`
